@@ -1,5 +1,4 @@
 import { Badge } from "@/components/landing/badge"
-import { DecorativeRail } from "@/components/landing/decorative-rail"
 
 export function SocialProofSection() {
   return (
@@ -38,4 +37,3 @@ export function SocialProofSection() {
     </section>
   )
 }
-
