@@ -184,6 +184,21 @@ export function LandingHero() {
         <div className="w-full my-8 sm:my-12 md:my-16 lg:my-16 flex items-center justify-center">
           <TreeVisualization />
         </div>
+
+        {/* 기존 히어로 영상 블록을 아래에 한 번 더 렌더 */}
+        <div className="w-full max-w-[720px] pt-2 sm:pt-4 pb-6 sm:pb-8 md:pb-10 px-2 sm:px-4 md:px-6 lg:px-11 flex flex-col justify-center items-center gap-2 relative z-5 my-8 sm:my-12 md:my-16 lg:my-16 mb-0 lg:pb-0">
+          <div className="w-full max-w-[720px] aspect-video bg-white shadow-[0px_0px_0px_0.9056603908538818px_rgba(0,0,0,0.08)] overflow-hidden rounded-[6px] sm:rounded-[8px] lg:rounded-[9.06px] flex flex-col justify-start items-start">
+            <div className="self-stretch flex-1 flex justify-start items-start">
+              <div className="w-full h-full flex items-center justify-center">
+                <div className="relative w-full h-full overflow-hidden">
+                  <div className="absolute inset-0 opacity-100 scale-100">
+                    <video src="/videos/landing-1.mov" className="w-full h-full object-contain" autoPlay loop muted playsInline />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="self-stretch border-t border-[#E0DEDB] border-b border-[#E0DEDB] flex justify-center items-start">
