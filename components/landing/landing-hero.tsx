@@ -6,6 +6,7 @@ import { motion, useScroll, useTransform } from "motion/react"
 import { DecorativeRail } from "@/components/landing/decorative-rail"
 import { FeatureCard } from "@/components/landing/feature-card"
 import { TreeVisualization } from "@/components/landing/tree-visualization"
+import ScrollFloat from "@/components/scroll-float"
 
 const features = [
   {
@@ -187,12 +188,28 @@ export function LandingHero() {
 
         {/* 안내 문구: 트리 시각화와 두 번째 영상 사이 */}
         <div className="w-full my-8 sm:my-12 md:my-16 flex flex-col items-center justify-center text-center gap-2 px-4 sm:px-6 md:px-8">
-          <div className="text-[#37322F] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight tracking-tight">
-            Treedi 에선 문맥의 오염 없이 <br />다양한 갈래로 질문할 수 있습니다.
-          </div>
-          <div className="text-[rgba(73,66,61,0.90)] text-sm sm:text-base md:text-lg leading-relaxed">
-            1개의 질문에서 생겨난 5개의 질문을 즉석에서 해결하세요.
-          </div>
+          <ScrollFloat
+            animationDuration={1.25}
+            ease="back.inOut(2)"
+            scrollStart="center bottom+=50%"
+            scrollEnd="bottom bottom-=40%"
+            stagger={0.035}
+            containerClassName=""
+            textClassName="text-[#37322F] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight"
+          >
+            {`Treedi 에선 문맥의 오염 없이\n다양한 갈래로 질문할 수 있습니다.`}
+          </ScrollFloat>
+          <ScrollFloat
+            animationDuration={1.35}
+            ease="back.inOut(2)"
+            scrollStart="center bottom+=50%"
+            scrollEnd="bottom bottom-=40%"
+            stagger={0.028}
+            containerClassName="my-2"
+            textClassName="text-[rgba(73,66,61,0.90)] text-sm sm:text-base md:text-lg leading-relaxed"
+          >
+            {`1개의 질문에서 생겨난 5개의 질문을 즉석에서 해결하세요.`}
+          </ScrollFloat>
         </div>
 
         {/* 기존 히어로 영상 블록을 아래에 한 번 더 렌더 */}
