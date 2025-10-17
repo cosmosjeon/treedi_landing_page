@@ -53,25 +53,7 @@ export default function DocumentationSection() {
 
   return (
     <div className="w-full border-b border-[rgba(55,50,47,0.12)] flex flex-col justify-center items-center">
-      {/* Header Section */}
-      <div className="self-stretch px-6 md:px-24 py-12 md:py-16 border-b border-[rgba(55,50,47,0.12)] flex justify-center items-center gap-6">
-        <div className="w-full max-w-[586px] px-6 py-5 shadow-[0px_2px_4px_rgba(50,45,43,0.06)] overflow-hidden rounded-lg flex flex-col justify-start items-center gap-4 shadow-none">
-          <Badge
-            icon={
-              <div className="w-[10.50px] h-[10.50px] outline outline-[1.17px] outline-[#37322F] outline-offset-[-0.58px] rounded-full"></div>
-            }
-            text="Platform Features"
-          />
-          <div className="self-stretch text-center flex justify-center flex-col text-[#49423D] text-3xl md:text-5xl font-semibold leading-tight md:leading-[60px] font-sans tracking-tight">
-            Streamline your business operations
-          </div>
-          <div className="self-stretch text-center text-[#605A57] text-base font-normal leading-7 font-sans">
-            Manage schedules, analyze data, and collaborate with your team
-            <br />
-            all in one powerful platform.
-          </div>
-        </div>
-      </div>
+      {/* Header Section removed */}
 
       {/* Content Section */}
       <div className="self-stretch px-4 md:px-9 overflow-hidden flex justify-start items-center">

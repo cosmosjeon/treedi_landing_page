@@ -1,9 +1,7 @@
 import { LandingNavigation } from "@/components/landing/navigation"
 import { LandingHero } from "@/components/landing/landing-hero"
 import { SocialProofSection } from "@/components/landing/social-proof-section"
-import { BentoGridSection } from "@/components/landing/bento-grid-section"
 import DocumentationSection from "@/components/documentation-section"
-import TestimonialsSection from "@/components/testimonials-section"
 import PricingSection from "@/components/pricing-section"
 import FAQSection from "@/components/faq-section"
 import CTASection from "@/components/cta-section"
@@ -21,9 +19,7 @@ export default function LandingPage() {
             <LandingNavigation />
             <LandingHero />
             <SocialProofSection />
-            <BentoGridSection />
             <DocumentationSection />
-            <TestimonialsSection />
             <PricingSection />
             <FAQSection />
             <CTASection />

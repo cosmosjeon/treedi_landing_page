@@ -84,7 +84,7 @@ export function LandingHero() {
               이젠 Treedi로 관리하세요.
             </div>
             <div className="w-full max-w-[506.08px] text-center flex justify-center flex-col text-[rgba(55,50,47,0.80)] sm:text-lg md:text-xl leading-[1.4] sm:leading-[1.45] md:leading-[1.5] lg:leading-7 font-sans px-2 sm:px-4 md:px-0 lg:text-lg font-medium text-sm">
-              GPT로 공부하면, 한 질문이 다섯 개의 새 개념을 낳습니다.
+              GPT로 공부하면, 한 질문이 다섯 개의 새 질문들을 낳습니다.
               <br />
               다시 물을수록 문맥은 흐트러지죠.
               <br />
@@ -183,6 +183,16 @@ export function LandingHero() {
 
         <div className="w-full my-8 sm:my-12 md:my-16 lg:my-16 flex items-center justify-center">
           <TreeVisualization />
+        </div>
+
+        {/* 안내 문구: 트리 시각화와 두 번째 영상 사이 */}
+        <div className="w-full my-8 sm:my-12 md:my-16 flex flex-col items-center justify-center text-center gap-2 px-4 sm:px-6 md:px-8">
+          <div className="text-[#37322F] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight tracking-tight">
+            Treedi 에선 문맥의 오염 없이 <br />다양한 갈래로 질문할 수 있습니다.
+          </div>
+          <div className="text-[rgba(73,66,61,0.90)] text-sm sm:text-base md:text-lg leading-relaxed">
+            1개의 질문에서 생겨난 5개의 질문을 즉석에서 해결하세요.
+          </div>
         </div>
 
         {/* 기존 히어로 영상 블록을 아래에 한 번 더 렌더 */}
