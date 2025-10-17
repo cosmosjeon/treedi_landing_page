@@ -26,18 +26,19 @@ export function LandingHero() {
   const [activeCard, setActiveCard] = useState(0)
   const [progress, setProgress] = useState(0)
   const mountedRef = useRef(true)
-  const scrollSectionRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: scrollSectionRef,
+  const arrowSectionRef = useRef<HTMLDivElement>(null)
+
+  const { scrollYProgress: arrowScrollProgress } = useScroll({
+    target: arrowSectionRef,
     offset: ["start end", "end start"],
   })
 
-  const opacity1 = useTransform(scrollYProgress, [0, 0.2, 0.4], [0, 1, 1])
-  const y1 = useTransform(scrollYProgress, [0, 0.2], [50, 0])
-  const opacity2 = useTransform(scrollYProgress, [0.2, 0.4, 0.6], [0, 1, 1])
-  const y2 = useTransform(scrollYProgress, [0.2, 0.4], [50, 0])
-  const opacity3 = useTransform(scrollYProgress, [0.4, 0.6, 0.8], [0, 1, 1])
-  const y3 = useTransform(scrollYProgress, [0.4, 0.6], [50, 0])
+  const opacity1 = useTransform(arrowScrollProgress, [0, 0.2, 0.4], [0, 1, 1])
+  const y1 = useTransform(arrowScrollProgress, [0, 0.2], [50, 0])
+  const opacity2 = useTransform(arrowScrollProgress, [0.2, 0.4, 0.6], [0, 1, 1])
+  const y2 = useTransform(arrowScrollProgress, [0.2, 0.4], [50, 0])
+  const opacity3 = useTransform(arrowScrollProgress, [0.4, 0.6, 0.8], [0, 1, 1])
+  const y3 = useTransform(arrowScrollProgress, [0.4, 0.6], [50, 0])
 
   useEffect(() => {
     const progressInterval = setInterval(() => {
@@ -153,7 +154,7 @@ export function LandingHero() {
           </div>
         </div>
 
-        <div ref={scrollSectionRef} className="w-full flex flex-col items-center gap-4 my-8 sm:my-12 md:my-16">
+        <div ref={arrowSectionRef} className="w-full flex flex-col items-center gap-4 my-8 sm:my-12 md:my-16">
           <motion.div
             style={{ opacity: opacity1, y: y1 }}
             className="text-center text-[#37322F] text-[16px] xs:text-[18px] sm:text-[20px] md:text-[28px] lg:text-[40px] font-bold leading-[1.1] sm:leading-[1.15] md:leading-[1.2] lg:leading-[1.15] font-sans"
@@ -180,7 +181,7 @@ export function LandingHero() {
           </motion.div>
         </div>
 
-        <div className="w-full max-w-[960px] h-[500px] flex items-center justify-center my-8 sm:my-12 md:my-16 lg:my-16">
+        <div className="w-full my-8 sm:my-12 md:my-16 lg:my-16 flex items-center justify-center">
           <TreeVisualization />
         </div>
       </div>
