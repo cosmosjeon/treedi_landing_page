@@ -189,9 +189,9 @@ export function LandingHero() {
         {/* 안내 문구: 트리 시각화와 두 번째 영상 사이 */}
         <div className="w-full my-8 sm:my-12 md:my-16 flex flex-col items-center justify-center text-center gap-2 px-4 sm:px-6 md:px-8">
           <ScrollFloat
-            animationDuration={1.25}
+            animationDuration={3.5}
             ease="back.inOut(2)"
-            scrollStart="center bottom+=50%"
+            scrollStart="top bottom+=20%"
             scrollEnd="bottom bottom-=40%"
             stagger={0.035}
             containerClassName=""
@@ -200,9 +200,9 @@ export function LandingHero() {
             {`Treedi 에선 문맥의 오염 없이\n다양한 갈래로 질문할 수 있습니다.`}
           </ScrollFloat>
           <ScrollFloat
-            animationDuration={1.35}
+            animationDuration={3.75}
             ease="back.inOut(2)"
-            scrollStart="center bottom+=50%"
+            scrollStart="top bottom+=20%"
             scrollEnd="bottom bottom-=40%"
             stagger={0.028}
             containerClassName="my-2"
