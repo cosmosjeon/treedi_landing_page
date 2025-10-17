@@ -1,6 +1,7 @@
 'use client'
 
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
 type Language = "ko" | "en"
 
@@ -12,14 +13,17 @@ type LanguageContextValue = {
 const LanguageContext = createContext<LanguageContextValue | undefined>(undefined)
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>("ko")
+  const router = useRouter()
+  const pathname = usePathname() ?? "/"
+  const searchParams = useSearchParams()
+  const derivedLanguage: Language = pathname.startsWith("/en") ? "en" : "ko"
+  const [language, setLanguageState] = useState<Language>(derivedLanguage)
 
   useEffect(() => {
-    const stored = typeof window !== "undefined" ? window.localStorage.getItem("preferred-language") : null
-    if (stored === "ko" || stored === "en") {
-      setLanguageState(stored)
+    if (language !== derivedLanguage) {
+      setLanguageState(derivedLanguage)
     }
-  }, [])
+  }, [language, derivedLanguage])
 
   useEffect(() => {
     if (typeof window === "undefined") return
@@ -31,10 +35,21 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     () => ({
       language,
       setLanguage: (value: Language) => {
+        if (value === language) return
         setLanguageState(value)
+        const pathWithoutLocale = pathname.startsWith("/en") ? pathname.slice(3) || "/" : pathname || "/"
+        const targetPath =
+          value === "en"
+            ? pathWithoutLocale === "/"
+              ? "/en"
+              : `/en${pathWithoutLocale.startsWith("/") ? pathWithoutLocale : `/${pathWithoutLocale}`}`
+            : pathWithoutLocale === "" ? "/" : pathWithoutLocale
+        const searchString = searchParams?.toString()
+        const href = searchString ? `${targetPath}?${searchString}` : targetPath
+        router.push(href)
       },
     }),
-    [language]
+    [language, pathname, router, searchParams]
   )
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>

@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { ChevronDown, Globe } from "lucide-react"
+import { Globe } from "lucide-react"
 
 import { useLanguage } from "@/context/language-context"
 
@@ -150,4 +150,3 @@ export function LandingNavigation() {
     </div>
   )
 }
-

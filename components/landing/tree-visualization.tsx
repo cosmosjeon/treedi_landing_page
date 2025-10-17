@@ -1,19 +1,107 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useMemo, useRef } from "react"
 import * as d3 from "d3"
 
 import { loadGsap } from "@/lib/load-gsap"
 import type { GsapModule, ScrollTriggerInstance, ScrollTriggerModule, TimelineLike } from "@/lib/load-gsap"
+import { useLanguage } from "@/context/language-context"
 
 type TreeNode = {
   name: string
   children?: TreeNode[]
 }
 
+const treeDataByLanguage = {
+  ko: {
+    name: "AI 학습 질문",
+    children: [
+      {
+        name: "머신러닝",
+        children: [
+          {
+            name: "지도학습",
+            children: [
+              {
+                name: "분류 알고리즘",
+                children: [{ name: "의사결정나무" }, { name: "서포트 벡터 머신" }],
+              },
+              {
+                name: "회귀 분석",
+                children: [{ name: "선형 회귀" }, { name: "릿지 회귀" }, { name: "라쏘 회귀" }, { name: "다항 회귀" }],
+              },
+            ],
+          },
+          {
+            name: "비지도학습",
+            children: [
+              {
+                name: "클러스터링",
+                children: [{ name: "K-Means" }, { name: "계층적 클러스터링" }, { name: "DBSCAN" }],
+              },
+            ],
+          },
+          {
+            name: "강화학습",
+            children: [
+              {
+                name: "Q-Learning",
+                children: [{ name: "탐험-활용 균형" }, { name: "가치 함수" }],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  } satisfies TreeNode,
+  en: {
+    name: "AI Study Questions",
+    children: [
+      {
+        name: "Machine Learning",
+        children: [
+          {
+            name: "Supervised Learning",
+            children: [
+              {
+                name: "Classification Algorithms",
+                children: [{ name: "Decision Trees" }, { name: "Support Vector Machines" }],
+              },
+              {
+                name: "Regression Analysis",
+                children: [{ name: "Linear Regression" }, { name: "Ridge Regression" }, { name: "Lasso Regression" }, { name: "Polynomial Regression" }],
+              },
+            ],
+          },
+          {
+            name: "Unsupervised Learning",
+            children: [
+              {
+                name: "Clustering",
+                children: [{ name: "K-Means" }, { name: "Hierarchical Clustering" }, { name: "DBSCAN" }],
+              },
+            ],
+          },
+          {
+            name: "Reinforcement Learning",
+            children: [
+              {
+                name: "Q-Learning",
+                children: [{ name: "Exploration vs. Exploitation" }, { name: "Value Functions" }],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  } satisfies TreeNode,
+} as const
+
 const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value))
 
 export function TreeVisualization() {
+  const { language } = useLanguage()
+  const treeData = useMemo(() => treeDataByLanguage[language], [language])
   const wrapperRef = useRef<HTMLDivElement>(null)
   const svgRef = useRef<SVGSVGElement>(null)
   const timelineRef = useRef<TimelineLike | null>(null)
@@ -161,63 +249,6 @@ export function TreeVisualization() {
 
       const g = svg.append("g").attr("transform", `translate(${paddingLeft}, ${paddingTop})`)
 
-      const treeData: TreeNode = {
-        name: "AI 학습 질문",
-        children: [
-          {
-            name: "머신러닝",
-            children: [
-              {
-                name: "지도학습",
-                children: [
-                  {
-                    name: "분류 알고리즘",
-                    children: [
-                      { name: "의사결정나무" },
-                      { name: "서포트 벡터 머신" },
-                    ],
-                  },
-                  {
-                    name: "회귀 분석",
-                    children: [
-                      { name: "선형 회귀" },
-                      { name: "릿지 회귀" },
-                      { name: "라쏘 회귀" },
-                      { name: "다항 회귀" },
-                    ],
-                  },
-                ],
-              },
-              {
-                name: "비지도학습",
-                children: [
-                  {
-                    name: "클러스터링",
-                    children: [
-                      { name: "K-Means" },
-                      { name: "계층적 클러스터링" },
-                      { name: "DBSCAN" },
-                    ],
-                  },
-                ],
-              },
-              {
-                name: "강화학습",
-                children: [
-                  {
-                    name: "Q-Learning",
-                    children: [
-                      { name: "탐험-활용 균형" },
-                      { name: "가치 함수" },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      }
-
       const tree = d3
         .tree<TreeNode>()
         .size([innerHeight, innerWidth])
@@ -270,8 +301,8 @@ export function TreeVisualization() {
         .attr("dy", 3)
         .attr("text-anchor", "end")
         .style("font-family", "Spoqa Han Sans Neo, sans-serif")
-        .style("font-size", "12px")
-        .style("font-weight", "bold")
+        .style("font-size", "10px")
+        .style("font-weight", "normal")
         .style("fill", "#000000")
         .text((d) => d.data.name)
 
@@ -410,8 +441,7 @@ export function TreeVisualization() {
         resizeAttachedRef.current = false
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [treeData])
 
   return (
     <div ref={wrapperRef} className="relative w-full max-w-[960px] h-[500px]">

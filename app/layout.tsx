@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter, Instrument_Serif } from "next/font/google"
+import localFont from "next/font/local"
 import "./globals.css"
 import { Providers } from "./providers"
 
@@ -19,6 +20,32 @@ const instrumentSerif = Instrument_Serif({
   preload: true,
 })
 
+const geistSans = localFont({
+  src: [
+    {
+      path: "./fonts/GeistVF.woff",
+      weight: "100 900",
+      style: "normal",
+    },
+  ],
+  variable: "--font-geist",
+  display: "swap",
+  preload: true,
+})
+
+const geistMono = localFont({
+  src: [
+    {
+      path: "./fonts/GeistMonoVF.woff",
+      weight: "100 900",
+      style: "normal",
+    },
+  ],
+  variable: "--font-geist-mono",
+  display: "swap",
+  preload: true,
+})
+
 export const metadata: Metadata = {
   title: "Treedi - AI 문맥 관리 솔루션",
   description:
@@ -31,7 +58,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ko" className={`${inter.variable} ${instrumentSerif.variable} antialiased`}>
+    <html lang="ko" className={`${inter.variable} ${instrumentSerif.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

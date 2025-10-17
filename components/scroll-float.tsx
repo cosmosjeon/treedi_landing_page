@@ -13,6 +13,7 @@ interface ScrollFloatProps {
   scrollStart?: string
   scrollEnd?: string
   stagger?: number
+  style?: React.CSSProperties
 }
 
 const ScrollFloat: React.FC<ScrollFloatProps> = ({
@@ -25,21 +26,23 @@ const ScrollFloat: React.FC<ScrollFloatProps> = ({
   scrollStart = "center bottom+=50%",
   scrollEnd = "bottom bottom-=40%",
   stagger = 0.03,
+  style,
 }) => {
   const containerRef = useRef<HTMLHeadingElement>(null)
 
   const splitText = useMemo(() => {
     const text = typeof children === "string" ? children : ""
-    return text.split("").map((char, index) => {
-      if (char === "\n") {
-        return <br key={`br-${index}`} />
-      }
-      return (
-        <span className="inline-block word" key={index}>
-          {char === " " ? "\u00A0" : char}
-        </span>
-      )
-    })
+    const lines = text.split("\n")
+    return lines.map((line, lineIndex) => (
+      <React.Fragment key={lineIndex}>
+        {line.split("").map((char, index) => (
+          <span className="inline-block word" key={`${lineIndex}-${index}`}>
+            {char === " " ? "\u00A0" : char}
+          </span>
+        ))}
+        {lineIndex < lines.length - 1 && <br key={`br-${lineIndex}`} />}
+      </React.Fragment>
+    ))
   }, [children])
 
   useEffect(() => {
@@ -84,7 +87,7 @@ const ScrollFloat: React.FC<ScrollFloatProps> = ({
             },
           },
         )
-      } catch (_) {
+      } catch {
         // fail silently if GSAP fails to load
       }
     }
@@ -97,11 +100,10 @@ const ScrollFloat: React.FC<ScrollFloatProps> = ({
 
   return (
     <h2 ref={containerRef} className={`my-5 overflow-hidden ${containerClassName}`}>
-      <span className={`inline-block leading-[1.5] ${textClassName}`}>{splitText}</span>
+      <span className={`inline-block leading-[1.5] ${textClassName}`} style={style}>{splitText}</span>
     </h2>
   )
 }
 
 export default ScrollFloat
-
 

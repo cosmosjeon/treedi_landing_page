@@ -1,28 +1,30 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import type React from "react"
+import { useState, useEffect, useMemo } from "react"
+import { useLanguage } from "@/context/language-context"
 
-// Badge component for consistency
-function Badge({ icon, text }: { icon: React.ReactNode; text: string }) {
-  return (
-    <div className="px-[14px] py-[6px] bg-white shadow-[0px_0px_0px_4px_rgba(55,50,47,0.05)] overflow-hidden rounded-[90px] flex justify-start items-center gap-[8px] border border-[rgba(2,6,23,0.08)] shadow-xs">
-      <div className="w-[14px] h-[14px] relative overflow-hidden flex items-center justify-center">{icon}</div>
-      <div className="text-center flex justify-center flex-col text-[#37322F] text-xs font-medium leading-3 font-sans">
-        {text}
-      </div>
-    </div>
-  )
-}
-
-export default function DocumentationSection() {
-  const [activeCard, setActiveCard] = useState(0)
-  const [animationKey, setAnimationKey] = useState(0)
-
-  const cards = [
+const cardsByLanguage = {
+  ko: [
+    {
+      title: "일정을 계획하세요",
+      description: "데이터를 탐색하고, 대시보드를 만들고,\n팀과 단번에 공유하세요.",
+      image: "/modern-dashboard-interface-with-data-visualization.jpg",
+    },
+    {
+      title: "데이터에서 인사이트까지",
+      description: "원시 데이터를 실시간 분석으로\n즉시 활용 가능한 인사이트로 바꿉니다.",
+      image: "/analytics-dashboard.png",
+    },
+    {
+      title: "끊김 없는 협업",
+      description: "팀과 실시간으로 협업하고\n인사이트를 바로 공유하세요.",
+      image: "/team-collaboration-interface-with-shared-workspace.jpg",
+    },
+  ],
+  en: [
     {
       title: "Plan your schedules",
-      description: "Explore your data, build your dashboard,\nbring your team together.",
+      description: "Explore your data, build dashboards,\nand bring your team together.",
       image: "/modern-dashboard-interface-with-data-visualization.jpg",
     },
     {
@@ -32,10 +34,18 @@ export default function DocumentationSection() {
     },
     {
       title: "Collaborate seamlessly",
-      description: "Work together in real-time with your team\nand share insights instantly.",
+      description: "Work together in real time and\nshare what matters instantly.",
       image: "/team-collaboration-interface-with-shared-workspace.jpg",
     },
-  ]
+  ],
+} as const
+
+export default function DocumentationSection() {
+  const { language } = useLanguage()
+  const [activeCard, setActiveCard] = useState(0)
+  const [animationKey, setAnimationKey] = useState(0)
+
+  const cards = useMemo(() => cardsByLanguage[language], [language])
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -45,6 +55,11 @@ export default function DocumentationSection() {
 
     return () => clearInterval(interval)
   }, [cards.length])
+
+  useEffect(() => {
+    setActiveCard(0)
+    setAnimationKey((prev) => prev + 1)
+  }, [cards])
 
   const handleCardClick = (index: number) => {
     setActiveCard(index)

@@ -1,4 +1,54 @@
+'use client'
+
+import { useMemo } from "react"
+
+import { useLanguage } from "@/context/language-context"
+
+type FooterColumn = {
+  title: string
+  links: string[]
+}
+
+const copy = {
+  ko: {
+    tagline: "코딩을 더 쉽게",
+    columns: [
+      {
+        title: "제품",
+        links: ["주요 기능", "요금제", "연동", "실시간 미리보기", "멀티 에이전트 코딩"],
+      },
+      {
+        title: "회사",
+        links: ["소개", "팀", "채용", "브랜드", "문의"],
+      },
+      {
+        title: "자료",
+        links: ["이용 약관", "API 레퍼런스", "문서", "커뮤니티", "고객 지원"],
+      },
+    ] satisfies FooterColumn[],
+  },
+  en: {
+    tagline: "Coding made effortless",
+    columns: [
+      {
+        title: "Product",
+        links: ["Features", "Pricing", "Integrations", "Real-time Previews", "Multi-Agent Coding"],
+      },
+      {
+        title: "Company",
+        links: ["About us", "Our team", "Careers", "Brand", "Contact"],
+      },
+      {
+        title: "Resources",
+        links: ["Terms of use", "API Reference", "Documentation", "Community", "Support"],
+      },
+    ] satisfies FooterColumn[],
+  },
+} as const
+
 export default function FooterSection() {
+  const { language } = useLanguage()
+  const { tagline, columns } = useMemo(() => copy[language], [language])
   return (
     <div className="w-full pt-10 flex flex-col justify-start items-start">
       {/* Main Footer Content */}
@@ -8,9 +58,7 @@ export default function FooterSection() {
           <div className="self-stretch flex justify-start items-center gap-3">
             <div className="text-center text-[#49423D] text-xl font-semibold leading-4 font-sans">Brillance</div>
           </div>
-          <div className="text-[rgba(73,66,61,0.90)] text-sm font-medium leading-[18px] font-sans">
-            Coding made effortless
-          </div>
+          <div className="text-[rgba(73,66,61,0.90)] text-sm font-medium leading-[18px] font-sans">{tagline}</div>
 
           {/* Social Media Icons */}
           <div className="flex justify-start items-start gap-4">
@@ -54,75 +102,21 @@ export default function FooterSection() {
 
         {/* Navigation Links */}
         <div className="self-stretch p-4 md:p-8 flex flex-col sm:flex-row flex-wrap justify-start sm:justify-between items-start gap-6 md:gap-8">
-          {/* Product Column */}
-
-          {/* Product Column */}
-          <div className="flex flex-col justify-start items-start gap-3 flex-1 min-w-[120px]">
-            <div className="self-stretch text-[rgba(73,66,61,0.50)] text-sm font-medium leading-5 font-sans">
-              Product
-            </div>
-            <div className="flex flex-col justify-end items-start gap-2">
-              <div className="text-[#49423D] text-sm font-normal leading-5 font-sans cursor-pointer hover:text-[#37322F] transition-colors">
-                Features
-              </div>
-              <div className="text-[#49423D] text-sm font-normal leading-5 font-sans cursor-pointer hover:text-[#37322F] transition-colors">
-                Pricing
-              </div>
-              <div className="text-[#49423D] text-sm font-normal leading-5 font-sans cursor-pointer hover:text-[#37322F] transition-colors">
-                Integrations
-              </div>
-              <div className="text-[#49423D] text-sm font-normal leading-5 font-sans cursor-pointer hover:text-[#37322F] transition-colors">
-                Real-time Previews
-              </div>
-              <div className="text-[#49423D] text-sm font-normal leading-5 font-sans cursor-pointer hover:text-[#37322F] transition-colors">
-                Multi-Agent Coding
+          {columns.map((column) => (
+            <div key={column.title} className="flex flex-col justify-start items-start gap-3 flex-1 min-w-[120px]">
+              <div className="self-stretch text-[rgba(73,66,61,0.50)] text-sm font-medium leading-5 font-sans">{column.title}</div>
+              <div className="flex flex-col justify-start items-start gap-2">
+                {column.links.map((link) => (
+                  <div
+                    key={link}
+                    className="text-[#49423D] text-sm font-normal leading-5 font-sans cursor-pointer hover:text-[#37322F] transition-colors"
+                  >
+                    {link}
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
-
-          {/* Company Column */}
-          <div className="flex flex-col justify-start items-start gap-3 flex-1 min-w-[120px]">
-            <div className="text-[rgba(73,66,61,0.50)] text-sm font-medium leading-5 font-sans">Company</div>
-            <div className="flex flex-col justify-center items-start gap-2">
-              <div className="text-[#49423D] text-sm font-normal leading-5 font-sans cursor-pointer hover:text-[#37322F] transition-colors">
-                About us
-              </div>
-              <div className="text-[#49423D] text-sm font-normal leading-5 font-sans cursor-pointer hover:text-[#37322F] transition-colors">
-                Our team
-              </div>
-              <div className="text-[#49423D] text-sm font-normal leading-5 font-sans cursor-pointer hover:text-[#37322F] transition-colors">
-                Careers
-              </div>
-              <div className="text-[#49423D] text-sm font-normal leading-5 font-sans cursor-pointer hover:text-[#37322F] transition-colors">
-                Brand
-              </div>
-              <div className="text-[#49423D] text-sm font-normal leading-5 font-sans cursor-pointer hover:text-[#37322F] transition-colors">
-                Contact
-              </div>
-            </div>
-          </div>
-
-          {/* Resources Column */}
-          <div className="flex flex-col justify-start items-start gap-3 flex-1 min-w-[120px]">
-            <div className="text-[rgba(73,66,61,0.50)] text-sm font-medium leading-5 font-sans">Resources</div>
-            <div className="flex flex-col justify-center items-center gap-2">
-              <div className="self-stretch text-[#49423D] text-sm font-normal leading-5 font-sans cursor-pointer hover:text-[#37322F] transition-colors">
-                Terms of use
-              </div>
-              <div className="self-stretch text-[#49423D] text-sm font-normal leading-5 font-sans cursor-pointer hover:text-[#37322F] transition-colors">
-                API Reference
-              </div>
-              <div className="self-stretch text-[#49423D] text-sm font-normal leading-5 font-sans cursor-pointer hover:text-[#37322F] transition-colors">
-                Documentation
-              </div>
-              <div className="self-stretch text-[#49423D] text-sm font-normal leading-5 font-sans cursor-pointer hover:text-[#37322F] transition-colors">
-                Community
-              </div>
-              <div className="self-stretch text-[#49423D] text-sm font-normal leading-5 font-sans cursor-pointer hover:text-[#37322F] transition-colors">
-                Support
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 
