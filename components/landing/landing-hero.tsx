@@ -228,24 +228,7 @@ export function LandingHero() {
         </div>
       </div>
 
-      <div className="self-stretch border-t border-[#E0DEDB] border-b border-[#E0DEDB] flex justify-center items-start">
-        <DecorativeRail count={50} />
-
-        <div className="flex-1 px-0 sm:px-2 md:px-0 flex flex-col md:flex-row justify-center items-stretch gap-0">
-          {features.map((feature, index) => (
-            <FeatureCard
-              key={feature.title}
-              title={feature.title}
-              description={feature.description}
-              isActive={activeCard === index}
-              progress={activeCard === index ? progress : 0}
-              onClick={() => handleCardClick(index)}
-            />
-          ))}
-        </div>
-
-        <DecorativeRail count={50} />
-      </div>
+      
     </>
   )
 }

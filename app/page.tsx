@@ -1,6 +1,5 @@
 import { LandingNavigation } from "@/components/landing/navigation"
 import { LandingHero } from "@/components/landing/landing-hero"
-import { SocialProofSection } from "@/components/landing/social-proof-section"
 import DocumentationSection from "@/components/documentation-section"
 import PricingSection from "@/components/pricing-section"
 import FAQSection from "@/components/faq-section"
@@ -18,7 +17,6 @@ export default function LandingPage() {
           <div className="self-stretch pt-[9px] overflow-visible border-b border-[rgba(55,50,47,0.06)] flex flex-col justify-center items-center gap-4 sm:gap-6 md:gap-8 lg:gap-[66px] relative z-10">
             <LandingNavigation />
             <LandingHero />
-            <SocialProofSection />
             <DocumentationSection />
             <PricingSection />
             <FAQSection />

@@ -23,8 +23,8 @@ export default function PricingSection() {
   return (
     <div className="w-full flex flex-col justify-center items-center gap-2">
       {/* Header Section */}
-      <div className="self-stretch px-6 md:px-24 py-12 md:py-16 border-b border-[rgba(55,50,47,0.12)] flex justify-center items-center gap-6">
-        <div className="w-full max-w-[586px] px-6 py-5 shadow-[0px_2px_4px_rgba(50,45,43,0.06)] overflow-hidden rounded-lg flex flex-col justify-start items-center gap-4 shadow-none">
+      <div className="self-stretch px-4 md:px-12 py-4 md:py-6 border-b border-[rgba(55,50,47,0.12)] flex justify-center items-center gap-4">
+        <div className="w-full max-w-[1060px] px-3 py-2 overflow-hidden rounded-lg flex flex-col justify-start items-center gap-2">
           {/* Pricing Badge */}
           <div className="px-[14px] py-[6px] bg-white shadow-[0px_0px_0px_4px_rgba(55,50,47,0.05)] overflow-hidden rounded-[90px] flex justify-start items-center gap-[8px] border border-[rgba(2,6,23,0.08)] shadow-xs">
             <div className="w-[14px] h-[14px] relative overflow-hidden flex items-center justify-center">
@@ -44,15 +44,20 @@ export default function PricingSection() {
           </div>
 
           {/* Title */}
-          <div className="self-stretch text-center flex justify-center flex-col text-[#49423D] text-3xl md:text-5xl font-semibold leading-tight md:leading-[60px] font-sans tracking-tight">
-            Choose the perfect plan for your business
+          <div className="self-stretch text-center flex justify-center flex-col text-[#49423D] text-2xl md:text-4xl font-bold leading-tight md:leading-[50px] font-sans tracking-tight whitespace-nowrap">
+            Treedi는 여러분의 진심 어린 피드백으로 성장합니다.
           </div>
 
           {/* Description */}
-          <div className="self-stretch text-center text-[#605A57] text-base font-normal leading-7 font-sans">
-            Scale your operations with flexible pricing that grows with your team.
+          <div className="self-stretch text-center text-[#605A57] text-lg md:text-xl font-semibold leading-8 md:leading-9 font-sans">
+            7일간 사용해보신 뒤, 솔직한 피드백을 남겨주세요.
             <br />
-            Start free, upgrade when you're ready.
+            지속적인 피드백을 남겨주시면 Treedi는 평생 무료로 이용하실 수 있습니다.
+          </div>
+
+          {/* Footnote */}
+          <div className="self-stretch text-center text-[rgba(73,66,61,0.70)] text-sm leading-6 font-sans">
+            *베타 기간 종료 후 유료화될 예정이며, 베타 이후에도 적극적으로 피드백을 남겨주신 분께는 계속 무료로 제공됩니다.
           </div>
         </div>
       </div>
