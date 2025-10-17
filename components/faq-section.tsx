@@ -9,34 +9,34 @@ interface FAQItem {
 
 const faqData: FAQItem[] = [
   {
-    question: "What is Brillance and who is it for?",
+    question: "Treedi는 무엇이며, 누가 사용하면 좋나요?",
     answer:
-      "Brillance is a comprehensive billing automation platform designed for businesses that need custom contract management. It's perfect for SaaS companies, service providers, and enterprises looking to streamline their billing processes.",
+      "Treedi는 질문을 트리 구조로 정리해 문맥이 꼬이지 않도록 돕는 학습 도구입니다. 스스로 공부하는 학습자, 팀 내 지식 공유가 필요한 분들께 특히 유용합니다.",
   },
   {
-    question: "How does the custom contract billing work?",
+    question: "트리 기반 문맥 관리가 어떻게 동작하나요?",
     answer:
-      "Our platform automatically processes your custom contracts, calculates billing amounts based on your specific terms, and generates invoices. You can set up complex pricing structures, usage-based billing, and custom billing cycles.",
+      "하나의 질문에서 파생되는 하위 질문들을 가지치기 하듯 연결해 저장합니다. 덕분에 관련 질문 간의 맥락을 잃지 않고, 필요한 흐름으로 쉽게 돌아갈 수 있습니다.",
   },
   {
-    question: "Can I integrate Brillance with my existing tools?",
+    question: "외부 도구와 연동할 수 있나요?",
     answer:
-      "Yes! Brillance integrates seamlessly with popular CRM systems, accounting software, and payment processors. We support APIs and webhooks for custom integrations with your existing workflow.",
+      "예. Treedi는 API와 웹훅을 통해 기존 노트/문서 도구, 이슈 트래커 등과 연동할 수 있도록 확장성을 제공합니다.",
   },
   {
-    question: "What kind of support do you provide?",
+    question: "어떤 지원을 제공하나요?",
     answer:
-      "We offer 24/7 customer support, dedicated account managers for enterprise clients, comprehensive documentation, and onboarding assistance to help you get started quickly.",
+      "베타 기간 동안 이메일 지원과 간단한 온보딩 가이드를 제공합니다. 피드백 채널을 통해 기능 제안과 문제 제보도 환영합니다.",
   },
   {
-    question: "Is my data secure with Brillance?",
+    question: "내 데이터는 안전한가요?",
     answer:
-      "Absolutely. We use enterprise-grade security measures including end-to-end encryption, SOC 2 compliance, and regular security audits. Your data is stored in secure, redundant data centers.",
+      "데이터 전송 구간 암호화와 기본 보안 수칙을 준수합니다. 추후 정식 출시 시 강화된 보안·감사 체계를 도입할 예정입니다.",
   },
   {
-    question: "How do I get started with Brillance?",
+    question: "어떻게 시작하나요?",
     answer:
-      "Getting started is simple! Sign up for our free trial, connect your existing systems, and our onboarding team will help you set up your first custom billing workflow within 24 hours.",
+      "회원가입 후 바로 사용하실 수 있습니다. 데모 템플릿으로 트리 작성을 시작하고, 사용 중 불편한 점은 바로 피드백 남겨주세요.",
   },
 ]
 
@@ -68,12 +68,10 @@ export default function FAQSection() {
         {/* Left Column - Header */}
         <div className="w-full lg:flex-1 flex flex-col justify-center items-start gap-4 lg:py-5">
           <div className="w-full flex flex-col justify-center text-[#49423D] font-semibold leading-tight md:leading-[44px] font-sans text-4xl tracking-tight">
-            Frequently Asked Questions
+            자주 묻는 질문
           </div>
           <div className="w-full text-[#605A57] text-base font-normal leading-7 font-sans">
-            Explore your data, build your dashboard,
-            <br className="hidden md:block" />
-            bring your team together.
+            Treedi에 대해 자주 받는 질문과 답변을 한 곳에 모았습니다.
           </div>
         </div>
 

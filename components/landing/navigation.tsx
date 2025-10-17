@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { ChevronDown } from "lucide-react"
+import { ChevronDown, Globe } from "lucide-react"
 
 import { useLanguage } from "@/context/language-context"
 
@@ -63,7 +63,12 @@ export function LandingNavigation() {
           </div>
         </div>
         <div className="h-6 sm:h-7 md:h-8 flex items-center gap-2 sm:gap-3">
-          <div className="relative" ref={languageDropdownRef}>
+          <div
+            className="relative"
+            ref={languageDropdownRef}
+            onMouseEnter={() => setIsLanguageMenuOpen(true)}
+            onMouseLeave={() => setIsLanguageMenuOpen(false)}
+          >
             <button
               type="button"
               onClick={() => setIsLanguageMenuOpen((prev) => !prev)}
@@ -71,8 +76,7 @@ export function LandingNavigation() {
               aria-haspopup="menu"
               aria-expanded={isLanguageMenuOpen}
             >
-              {language === "ko" ? copy.ko.langLabel : copy.en.langLabel}
-              <ChevronDown className={`h-3.5 w-3.5 transition-transform ${isLanguageMenuOpen ? "rotate-180" : ""}`} />
+              <Globe className="h-3.5 w-3.5" />
             </button>
             {isLanguageMenuOpen ? (
               <div className="absolute right-0 mt-2 w-32 rounded-lg border border-[rgba(55,50,47,0.12)] bg-white py-1 shadow-[0px_8px_16px_rgba(55,50,47,0.12)] z-50">
