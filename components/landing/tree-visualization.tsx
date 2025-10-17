@@ -75,7 +75,7 @@ export function TreeVisualization() {
       if (!isLockedRef.current) return
       event.preventDefault()
       window.scrollTo({ top: lockedScrollYRef.current })
-      updateProgress(event.deltaY * 0.0015)
+      updateProgress(event.deltaY * 0.00035)
     }
 
     const handleTouchStart = (event: TouchEvent) => {
@@ -92,7 +92,7 @@ export function TreeVisualization() {
       }
       const delta = lastTouchYRef.current - currentY
       lastTouchYRef.current = currentY
-      updateProgress(delta * 0.008)
+      updateProgress(delta * 0.002)
       event.preventDefault()
       window.scrollTo({ top: lockedScrollYRef.current })
     }
@@ -239,8 +239,8 @@ export function TreeVisualization() {
 
       nodesSelection
         .append("circle")
-        .attr("r", (d) => (d.children ? 5 : 3))
-        .style("fill", (d) => (d.children ? "#666666" : "#B8B8B8"))
+        .attr("r", 5)
+        .style("fill", "#666666")
         .style("stroke", "none")
 
       nodesSelection
@@ -249,8 +249,8 @@ export function TreeVisualization() {
         .attr("dy", 3)
         .attr("text-anchor", "end")
         .style("font-family", "Spoqa Han Sans Neo, sans-serif")
-        .style("font-size", (d) => (d.children ? "12px" : "10px"))
-        .style("font-weight", (d) => (d.children ? "bold" : "normal"))
+        .style("font-size", "12px")
+        .style("font-weight", "bold")
         .style("fill", "#000000")
         .text((d) => d.data.name)
 
@@ -272,33 +272,46 @@ export function TreeVisualization() {
       })
 
       const timeline = gsap.timeline({ paused: true, defaults: { ease: "none" } })
+      const targetTransforms: string[] = nodesData.map((nodeDatum) => `translate(${nodeDatum.y},${nodeDatum.x}) scale(1)`)
 
+      const levels: Array<{ nodeIndices: number[]; linkElements: SVGPathElement[] }> = []
       nodesData.forEach((nodeDatum, index) => {
-        const nodeEl = nodeElements[index]
-        const targetTransform = `translate(${nodeDatum.y},${nodeDatum.x}) scale(1)`
-
-        if (index > 0) {
-          const linkEl = linkElements[index - 1]
-          timeline.to(linkEl, { strokeDashoffset: 0, opacity: 1, duration: 0.6 }, ">")
+        const depth = nodeDatum.depth
+        if (!levels[depth]) {
+          levels[depth] = { nodeIndices: [], linkElements: [] }
         }
+        levels[depth].nodeIndices.push(index)
+        if (depth > 0) {
+          levels[depth].linkElements.push(linkElements[index - 1])
+        }
+      })
 
-        timeline.to(
-          nodeEl,
-          {
-            opacity: 1,
-            duration: 0.2,
-          },
-          index === 0 ? 0 : ">-0.3",
-        )
+      levels.forEach((level) => {
+        const start = timeline.duration()
 
-        timeline.to(
-          nodeEl,
-          {
-            attr: { transform: targetTransform },
-            duration: 0.6,
-          },
-          "<",
-        )
+        level.linkElements.forEach((linkEl) => {
+          timeline.to(linkEl, { strokeDashoffset: 0, opacity: 1, duration: 0.6 }, start)
+        })
+
+        level.nodeIndices.forEach((nodeIndex) => {
+          timeline.to(
+            nodeElements[nodeIndex],
+            {
+              opacity: 1,
+              duration: 0.25,
+            },
+            start,
+          )
+
+          timeline.to(
+            nodeElements[nodeIndex],
+            {
+              attr: { transform: targetTransforms[nodeIndex] },
+              duration: 0.6,
+            },
+            start + 0.25,
+          )
+        })
       })
 
       timelineRef.current = timeline
