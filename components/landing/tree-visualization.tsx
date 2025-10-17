@@ -28,6 +28,7 @@ export function TreeVisualization() {
   const gsapRef = useRef<GsapModule | null>(null)
   const scrollTriggerRef = useRef<ScrollTriggerInstance | null>(null)
   const scrollTriggerLibRef = useRef<ScrollTriggerModule | null>(null)
+  const skipNextLockRef = useRef(false)
 
   useEffect(() => {
     let isMounted = true
@@ -67,12 +68,25 @@ export function TreeVisualization() {
         unlockScroll()
         scrollTriggerRef.current?.disable?.()
       } else if (next === 0 && delta < 0) {
+        skipNextLockRef.current = true
         unlockScroll()
       }
     }
 
+    const resetToStart = () => {
+      progressRef.current = 0
+      timelineRef.current?.totalProgress(0)
+      animationDoneRef.current = false
+    }
+
     const handleWheel = (event: WheelEvent) => {
       if (!isLockedRef.current) return
+      if (event.deltaY < 0 && progressRef.current <= 0.02) {
+        resetToStart()
+        skipNextLockRef.current = true
+        unlockScroll()
+        return
+      }
       event.preventDefault()
       window.scrollTo({ top: lockedScrollYRef.current })
       updateProgress(event.deltaY * 0.00035)
@@ -92,6 +106,13 @@ export function TreeVisualization() {
       }
       const delta = lastTouchYRef.current - currentY
       lastTouchYRef.current = currentY
+      if (delta < 0 && progressRef.current <= 0.02) {
+        resetToStart()
+        lastTouchYRef.current = null
+        skipNextLockRef.current = true
+        unlockScroll()
+        return
+      }
       updateProgress(delta * 0.002)
       event.preventDefault()
       window.scrollTo({ top: lockedScrollYRef.current })
@@ -338,9 +359,17 @@ export function TreeVisualization() {
           start: "center center",
           end: "center center",
           onEnter: () => {
+            if (skipNextLockRef.current) {
+              skipNextLockRef.current = false
+              return
+            }
             if (!animationDoneRef.current) lockScroll()
           },
           onEnterBack: () => {
+            if (skipNextLockRef.current) {
+              skipNextLockRef.current = false
+              return
+            }
             if (!animationDoneRef.current) {
               lockScroll()
             } else {
@@ -353,6 +382,7 @@ export function TreeVisualization() {
               progressRef.current = 0
               timelineRef.current?.totalProgress(0)
             }
+            skipNextLockRef.current = false
             unlockScroll()
           },
         })
