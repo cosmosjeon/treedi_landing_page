@@ -56,9 +56,9 @@ export function Header() {
               <button className="text-[#37322f] hover:text-[#37322f]/80 text-sm font-medium">
                 {language === "ko" ? copy.ko.products : copy.en.products}
               </button>
-              <button className="text-[#37322f] hover:text-[#37322f]/80 text-sm font-medium">
+              <a href="/pricing" className="text-[#37322f] hover:text-[#37322f]/80 text-sm font-medium">
                 {language === "ko" ? copy.ko.pricing : copy.en.pricing}
-              </button>
+              </a>
               <button className="text-[#37322f] hover:text-[#37322f]/80 text-sm font-medium">
                 {language === "ko" ? copy.ko.docs : copy.en.docs}
               </button>

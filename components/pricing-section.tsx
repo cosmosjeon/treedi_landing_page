@@ -84,7 +84,7 @@ export default function PricingSection() {
                   <div className="flex flex-col items-start gap-3 min-w-[200px]">
                     <div className="text-[#37322F] text-6xl md:text-7xl font-semibold leading-none font-serif">{localizedCopy.price}</div>
                     <div className="text-[#847971] text-sm md:text-base font-medium font-sans">{localizedCopy.betaLabel}</div>
-                    <a href="https://treedi-ai.vercel.app" className="inline-block">
+                    <a href="/pricing" className="inline-block">
                       <div className="px-6 py-[12px] bg-[#37322F] shadow-[0px_2px_4px_rgba(55,50,47,0.12)] rounded-[99px] flex justify-center items-center hover:bg-[#2A2520] transition-colors">
                         <div className="text-[#FBFAF9] text-[14px] md:text-[15px] font-medium leading-5 font-sans">{localizedCopy.cta}</div>
                       </div>
