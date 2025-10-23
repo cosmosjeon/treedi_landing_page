@@ -2,7 +2,6 @@ import { LandingNavigation } from "@/components/landing/navigation"
 import { LandingHero } from "@/components/landing/landing-hero"
 import DocumentationSection from "@/components/documentation-section"
 import PricingSection from "@/components/pricing-section"
-import FAQSection from "@/components/faq-section"
 import CTASection from "@/components/cta-section"
 import FooterSection from "@/components/footer-section"
 
@@ -19,7 +18,6 @@ export default function LandingPage() {
             <LandingHero />
             <DocumentationSection />
             <PricingSection />
-            <FAQSection />
             <CTASection />
             <FooterSection />
           </div>

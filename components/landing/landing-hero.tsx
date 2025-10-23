@@ -6,37 +6,7 @@ import { motion, useScroll, useTransform } from "motion/react"
 import { TreeVisualization } from "@/components/landing/tree-visualization"
 import ScrollFloat from "@/components/scroll-float"
 import { useLanguage } from "@/context/language-context"
-
-const featureCopy = {
-  ko: [
-    {
-      title: "일정을 계획하세요",
-      description: "구독과 결제를 자동화해 고객 관리를 간편하게 만듭니다.",
-    },
-    {
-      title: "데이터를 인사이트로",
-      description: "실시간 분석으로 중요한 비즈니스 지표를 빠르게 파악하세요.",
-    },
-    {
-      title: "팀 협업을 매끄럽게",
-      description: "공유 대시보드와 협업 워크플로로 팀의 발걸음을 맞춥니다.",
-    },
-  ],
-  en: [
-    {
-      title: "Plan your schedules",
-      description: "Streamline subscriptions and billing with automated scheduling tools.",
-    },
-    {
-      title: "Analytics & insights",
-      description: "Turn business data into actionable insights with real-time analytics.",
-    },
-    {
-      title: "Collaborate seamlessly",
-      description: "Keep teams aligned through shared dashboards and collaborative workflows.",
-    },
-  ],
-} as const
+import { featureCards } from "@/lib/feature-constants"
 
 const copy = {
   ko: {
@@ -71,7 +41,7 @@ const copy = {
 
 export function LandingHero() {
   const { language } = useLanguage()
-  const features = useMemo(() => featureCopy[language], [language])
+  const features = useMemo(() => featureCards[language], [language])
   const localizedCopy = useMemo(() => copy[language], [language])
   const headlineLines = useMemo(() => localizedCopy.headline.split("\n"), [localizedCopy.headline])
   const subheadingLines = useMemo(() => localizedCopy.subheading.split("\n"), [localizedCopy.subheading])

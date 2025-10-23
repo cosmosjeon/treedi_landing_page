@@ -2,50 +2,14 @@
 
 import { useState, useEffect, useMemo } from "react"
 import { useLanguage } from "@/context/language-context"
-
-const cardsByLanguage = {
-  ko: [
-    {
-      title: "일정을 계획하세요",
-      description: "데이터를 탐색하고, 대시보드를 만들고,\n팀과 단번에 공유하세요.",
-      image: "/modern-dashboard-interface-with-data-visualization.jpg",
-    },
-    {
-      title: "데이터에서 인사이트까지",
-      description: "원시 데이터를 실시간 분석으로\n즉시 활용 가능한 인사이트로 바꿉니다.",
-      image: "/analytics-dashboard.png",
-    },
-    {
-      title: "끊김 없는 협업",
-      description: "팀과 실시간으로 협업하고\n인사이트를 바로 공유하세요.",
-      image: "/team-collaboration-interface-with-shared-workspace.jpg",
-    },
-  ],
-  en: [
-    {
-      title: "Plan your schedules",
-      description: "Explore your data, build dashboards,\nand bring your team together.",
-      image: "/modern-dashboard-interface-with-data-visualization.jpg",
-    },
-    {
-      title: "Data to insights in minutes",
-      description: "Transform raw data into actionable insights\nwith powerful analytics tools.",
-      image: "/analytics-dashboard.png",
-    },
-    {
-      title: "Collaborate seamlessly",
-      description: "Work together in real time and\nshare what matters instantly.",
-      image: "/team-collaboration-interface-with-shared-workspace.jpg",
-    },
-  ],
-} as const
+import { featureCards } from "@/lib/feature-constants"
 
 export default function DocumentationSection() {
   const { language } = useLanguage()
   const [activeCard, setActiveCard] = useState(0)
   const [animationKey, setAnimationKey] = useState(0)
 
-  const cards = useMemo(() => cardsByLanguage[language], [language])
+  const cards = useMemo(() => featureCards[language], [language])
 
   useEffect(() => {
     const interval = setInterval(() => {
