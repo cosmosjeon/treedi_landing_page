@@ -195,17 +195,17 @@ export function LandingHero() {
           </motion.div>
         </div>
 
-        <div className="w-full my-8 sm:my-12 md:my-16 lg:my-16 flex items-center justify-center">
+        <div className="w-full mt-8 sm:mt-12 md:mt-16 lg:mt-16 mb-2 sm:mb-3 md:mb-4 flex items-center justify-center">
           <TreeVisualization />
         </div>
 
         {/* 안내 문구: 트리 시각화와 두 번째 영상 사이 */}
-        <div className="w-full my-8 sm:my-12 md:my-16 flex flex-col items-center justify-center text-center gap-2 px-4 sm:px-6 md:px-8">
+        <div className="w-full mt-2 sm:mt-3 md:mt-4 mb-8 sm:mb-12 md:mb-16 flex flex-col items-center justify-center text-center gap-2 px-4 sm:px-6 md:px-8">
           <ScrollFloat
             animationDuration={2.5}
             ease="back.inOut(2)"
-            scrollStart="center bottom+=50%"
-            scrollEnd="bottom bottom-=40%"
+            scrollStart="top bottom"
+            scrollEnd="bottom bottom-=30%"
             stagger={0.025}
             containerClassName=""
             textClassName="text-[#37322F] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight"
@@ -216,8 +216,8 @@ export function LandingHero() {
           <ScrollFloat
             animationDuration={2.5}
             ease="back.inOut(2)"
-            scrollStart="center bottom+=30%"
-            scrollEnd="bottom bottom-=40%"
+            scrollStart="top bottom"
+            scrollEnd="bottom bottom-=30%"
             stagger={0.02}
             containerClassName="my-2"
             textClassName="text-[rgba(73,66,61,0.90)] text-sm sm:text-base md:text-lg leading-relaxed"

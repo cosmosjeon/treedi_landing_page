@@ -445,7 +445,10 @@ export function TreeVisualization() {
   }, [treeData])
 
   return (
-    <div ref={wrapperRef} className="relative w-full max-w-[960px] h-[500px]">
+    <div
+      ref={wrapperRef}
+      className="relative w-full max-w-[960px] h-[80vh] sm:h-[85vh] md:h-[90vh] min-h-[520px]"
+    >
       <svg ref={svgRef} className="w-full h-full" style={{ background: "transparent" }} />
     </div>
   )
