@@ -73,18 +73,32 @@ export default function DocumentationSection() {
             })}
           </div>
 
-          {/* Right Column - Image */}
+          {/* Right Column - Preview Image (from public/) */}
           <div className="w-full md:w-auto rounded-lg flex flex-col justify-center items-center gap-2 order-1 md:order-2 md:px-0 px-[00]">
             <div className="w-full md:w-[580px] h-[250px] md:h-[420px] bg-white shadow-[0px_0px_0px_0.9056603908538818px_rgba(0,0,0,0.08)] overflow-hidden rounded-lg flex flex-col justify-start items-start">
-              <div
-                className={`w-full h-full transition-all duration-300 ${
-                  activeCard === 0
-                    ? "bg-gradient-to-br from-blue-50 to-blue-100"
-                    : activeCard === 1
-                      ? "bg-gradient-to-br from-purple-50 to-purple-100"
-                      : "bg-gradient-to-br from-green-50 to-green-100"
-                }`}
-              />
+              <div className="relative w-full h-full">
+                {/* 분기 처리 (earliest) */}
+                <img
+                  src="/capture-branch.png"
+                  alt="분기 처리"
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${activeCard === 0 ? 'opacity-100' : 'opacity-0'}`}
+                  loading="lazy"
+                />
+                {/* 트리 정리 (middle) */}
+                <img
+                  src="/capture-tree.png"
+                  alt="트리 정리"
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${activeCard === 1 ? 'opacity-100' : 'opacity-0'}`}
+                  loading="lazy"
+                />
+                {/* 문맥 선택 (latest) */}
+                <img
+                  src="/capture-context.png"
+                  alt="문맥 선택"
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${activeCard === 2 ? 'opacity-100' : 'opacity-0'}`}
+                  loading="lazy"
+                />
+              </div>
             </div>
           </div>
         </div>
