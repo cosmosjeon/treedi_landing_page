@@ -153,9 +153,11 @@ export function TreeVisualization() {
 
       if (next === 1) {
         animationDoneRef.current = true
+        // Keep ScrollTrigger enabled so we can reverse when scrolling back up
         unlockScroll()
-        scrollTriggerRef.current?.disable?.()
       } else if (next === 0 && delta < 0) {
+        // When fully reversed to the start, consider animation not done
+        animationDoneRef.current = false
         skipNextLockRef.current = true
         unlockScroll()
       }
@@ -213,8 +215,8 @@ export function TreeVisualization() {
       window.addEventListener("touchmove", handleTouchMove, { passive: false })
     }
 
-    const lockScroll = () => {
-      if (isLockedRef.current || animationDoneRef.current) return
+    const lockScroll = (force = false) => {
+      if (isLockedRef.current || (!force && animationDoneRef.current)) return
       isLockedRef.current = true
       lockedScrollYRef.current = window.scrollY
       bodyOverflowRef.current = document.body.style.overflow
@@ -401,12 +403,11 @@ export function TreeVisualization() {
               skipNextLockRef.current = false
               return
             }
-            if (!animationDoneRef.current) {
-              lockScroll()
-            } else {
-              progressRef.current = 1
-              timelineRef.current?.totalProgress(1)
-            }
+            // When coming back up through the section, lock and allow reverse animation
+            progressRef.current = animationDoneRef.current ? 1 : progressRef.current
+            timelineRef.current?.totalProgress(progressRef.current)
+            // Force locking even if animation is currently marked as done
+            lockScroll(true)
           },
           onLeaveBack: () => {
             if (!animationDoneRef.current) {

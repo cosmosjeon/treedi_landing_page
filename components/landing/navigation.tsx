@@ -125,7 +125,7 @@ export function LandingNavigation() {
               </div>
             ) : null}
           </div>
-          <a href="#" className="inline-block">
+          <a href="https://treedi-ai.vercel.app" className="inline-block">
             <div className="px-2 sm:px-3 md:px-[14px] py-1 sm:py-[6px] bg-white shadow-[0px_1px_2px_rgba(55,50,47,0.12)] overflow-hidden rounded-full flex justify-center items-center">
               <div className="flex flex-col justify-center text-[#37322F] text-xs md:text-[13px] font-medium leading-5 font-sans">
                 {language === "ko" ? copy.ko.login : copy.en.login}
