@@ -12,7 +12,6 @@ type FooterColumn = {
 
 const copy = {
   ko: {
-    tagline: "코딩을 더 쉽게",
     columns: [
       {
         title: "제품",
@@ -29,7 +28,6 @@ const copy = {
     ] satisfies FooterColumn[],
   },
   en: {
-    tagline: "Coding made effortless",
     columns: [
       {
         title: "Product",
@@ -49,7 +47,7 @@ const copy = {
 
 export default function FooterSection() {
   const { language } = useLanguage()
-  const { tagline, columns } = useMemo(() => copy[language], [language])
+  const { columns } = useMemo(() => copy[language], [language])
   return (
     <div className="w-full pt-10 flex flex-col justify-start items-start">
       {/* Main Footer Content */}
