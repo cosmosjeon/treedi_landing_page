@@ -1,22 +1,6 @@
 {
   "version": 2,
-  "functions": {
-    "app/**/*.tsx": {
-      "runtime": "nodejs18.x"
-    }
-  },
-  "buildCommand": "npm run build",
-  "outputDirectory": ".next",
-  "installCommand": "npm install",
-  "framework": "nextjs",
   "regions": ["icn1"],
-  "redirects": [
-    {
-      "source": "/",
-      "destination": "/",
-      "permanent": false
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",

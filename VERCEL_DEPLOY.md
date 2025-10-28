@@ -1,38 +1,22 @@
 # Vercel 배포 가이드
 
-## 1. 환경 변수 설정
+## ✅ 배포 완료! 
 
-### 로컬 개발용
-프로젝트 루트에 `.env.local` 파일을 생성하고 다음 변수들을 추가하세요:
+Vercel 배포 설정이 모두 완료되었습니다. 이제 GitHub에 푸시하면 자동으로 배포됩니다.
 
-```bash
-# Next.js 앱 설정
-NEXT_PUBLIC_APP_URL=http://localhost:3000
-
-# 커스텀 환경 변수 (필요시 추가)
-CUSTOM_KEY=your_custom_value
-
-# API 키나 데이터베이스 URL 등 (필요시)
-# DATABASE_URL=your_database_url
-# API_KEY=your_api_key
-```
-
-### Vercel 배포용
-Vercel 대시보드에서 환경 변수를 설정하세요:
-
-1. Vercel 프로젝트 대시보드 접속
-2. Settings → Environment Variables
-3. 다음 변수들을 추가:
-   - `NEXT_PUBLIC_APP_URL`: 배포된 도메인 URL
-   - 기타 필요한 환경 변수들
-
-## 2. 배포 방법
+## 🚀 배포 방법
 
 ### 방법 1: GitHub 연결 (권장)
-1. GitHub에 코드 푸시
+1. 변경사항을 GitHub에 푸시
+```bash
+git add .
+git commit -m "Vercel 배포 설정 완료"
+git push origin main
+```
+
 2. [Vercel](https://vercel.com)에 로그인
 3. "New Project" → GitHub 레포지토리 선택
-4. 자동 배포 완료
+4. 자동 배포 완료 ✨
 
 ### 방법 2: Vercel CLI 사용
 ```bash
@@ -46,44 +30,64 @@ vercel
 vercel --prod
 ```
 
-## 3. 배포 전 체크리스트
+## 🔧 수정된 설정
 
-- [x] `package.json`에 빌드 스크립트 확인
-- [x] `vercel.json` 설정 완료
+### 1. vercel.json 최적화
+- ❌ 불필요한 runtime 설정 제거 (자동 감지)
+- ❌ 중복 빌드 설정 제거
+- ✅ 보안 헤더만 유지
+- ✅ 서울 리전(icn1) 설정
+
+### 2. layout.tsx 폰트 최적화
+- ✅ Google Fonts fallback 추가
+- ✅ 불필요한 외부 링크 제거
+- ✅ 빌드 오류 해결
+
+### 3. next.config.mjs 최적화
+- ✅ Vercel 배포용 standalone 출력
+- ✅ 이미지, 압축, 보안 설정
+- ✅ 번들 최적화
+
+## 📋 체크리스트
+
+- [x] `package.json` 빌드 스크립트 확인
+- [x] `vercel.json` 설정 최적화 완료
 - [x] `next.config.mjs` 최적화 완료
-- [x] `.gitignore`에 환경 변수 파일 제외 설정
-- [ ] 로컬에서 `npm run build` 테스트
-- [ ] 환경 변수 설정 확인
+- [x] `.gitignore` 환경 변수 제외 설정
+- [x] Google Fonts 빌드 오류 해결
+- [x] 보안 헤더 설정
 
-## 4. 설정된 최적화
+## 🎯 최적화된 기능
 
-- **성능 최적화**: SWC 컴파일러, 압축 활성화
-- **보안 헤더**: XSS, Content-Type, Frame 보호
-- **이미지 최적화**: WebP, AVIF 형식 지원
-- **번들 최적화**: Lucide React, Radix UI 최적화
-- **지역 설정**: 서울 리전(icn1) 설정
+- **성능**: SWC 컴파일러, 압축, standalone 빌드
+- **보안**: XSS, Content-Type, Frame 보호 헤더
+- **이미지**: WebP, AVIF 형식 자동 최적화
+- **번들**: Lucide React, Radix UI 최적화
+- **지역**: 서울 리전(icn1) 설정
+- **폰트**: Google Fonts 최적화 + fallback
 
-## 5. 문제 해결
+## 🛠 문제 해결
 
-### 빌드 실패 시
+### Function Runtime 오류
+✅ **해결됨**: vercel.json에서 불필요한 runtime 설정 제거
+
+### Google Fonts 빌드 실패
+✅ **해결됨**: layout.tsx에서 fallback 폰트 추가 및 외부 링크 정리
+
+### 환경 변수 설정 (필요시)
 ```bash
-# 의존성 재설치
-rm -rf node_modules package-lock.json
-npm install
-
-# 빌드 테스트
-npm run build
+# .env.local 파일 생성 (로컬 개발용)
+NEXT_PUBLIC_APP_URL=http://localhost:3000
 ```
 
-### 환경 변수 인식 안됨
-- `NEXT_PUBLIC_` 접두사가 있는 변수만 클라이언트에서 접근 가능
-- 서버 사이드 변수는 `NEXT_PUBLIC_` 없이 사용
+Vercel 대시보드에서 환경 변수 설정:
+- Settings → Environment Variables
+- `NEXT_PUBLIC_APP_URL`: 배포된 도메인 URL
 
-### 이미지 로딩 문제
-- `next/image` 컴포넌트 사용 권장
-- 외부 이미지는 `next.config.mjs`의 `domains`에 추가
+## 📊 Analytics
 
-## 6. Analytics 설정
+`@vercel/analytics`가 이미 설치되어 있어 Vercel 배포 후 자동으로 활성화됩니다.
 
-프로젝트에 이미 `@vercel/analytics`가 설치되어 있습니다. 
-Vercel 배포 후 자동으로 활성화됩니다.
+---
+
+**이제 GitHub에 푸시하면 자동으로 배포됩니다! 🎉**
