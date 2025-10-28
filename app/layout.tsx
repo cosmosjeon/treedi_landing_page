@@ -10,6 +10,7 @@ const inter = Inter({
   variable: "--font-inter",
   display: "swap",
   preload: true,
+  fallback: ["system-ui", "arial"],
 })
 
 const instrumentSerif = Instrument_Serif({
@@ -18,6 +19,7 @@ const instrumentSerif = Instrument_Serif({
   weight: ["400"],
   display: "swap",
   preload: true,
+  fallback: ["serif"],
 })
 
 const geistSans = localFont({
@@ -62,11 +64,6 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-        />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@400&display=swap" />
         <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css' />
       </head>
       <body className="font-spoqa antialiased">
