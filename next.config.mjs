@@ -6,7 +6,7 @@ const nextConfig = {
   // 이미지 최적화
   images: {
     formats: ['image/webp', 'image/avif'],
-    domains: [],
+    domains: ['cdn.jsdelivr.net', 'hebbkx1anhila5yf.public.blob.vercel-storage.com'],
     minimumCacheTTL: 60,
   },
   

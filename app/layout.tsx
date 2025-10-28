@@ -61,11 +61,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko" className={`${inter.variable} ${instrumentSerif.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css' />
-      </head>
       <body className="font-spoqa antialiased">
         <Providers>{children}</Providers>
       </body>

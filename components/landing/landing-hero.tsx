@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useRef, useState } from "react"
+import Image from "next/image"
 import { motion, useScroll, useTransform } from "motion/react"
 
 import { TreeVisualization } from "@/components/landing/tree-visualization"
@@ -121,12 +122,20 @@ export function LandingHero() {
         </div>
 
         <div className="absolute top-[232px] sm:top-[248px] md:top-[264px] lg:top-[320px] left-1/2 -translate-x-1/2 z-0 pointer-events-none">
-          <img
-            src="/mask-group-pattern.svg"
-            alt=""
-            className="w-[936px] sm:w-[1404px] md:w-[2106px] lg:w-[2808px] h-auto opacity-30 sm:opacity-40 md:opacity-50 mix-blend-multiply"
-            style={{ filter: "hue-rotate(15deg) saturate(0.7) brightness(1.2)" }}
-          />
+          <div
+            className="relative w-[936px] sm:w-[1404px] md:w-[2106px] lg:w-[2808px]"
+            style={{ aspectRatio: "1060 / 949" }}
+          >
+            <Image
+              src="/mask-group-pattern.svg"
+              alt=""
+              fill
+              className="object-contain opacity-30 sm:opacity-40 md:opacity-50 mix-blend-multiply"
+              style={{ filter: "hue-rotate(15deg) saturate(0.7) brightness(1.2)" }}
+              sizes="(min-width: 1280px) 2808px, (min-width: 1024px) 2106px, (min-width: 640px) 1404px, 936px"
+              priority
+            />
+          </div>
         </div>
 
         <div className="w-full max-w-[720px] pt-2 sm:pt-4 pb-6 sm:pb-8 md:pb-10 px-2 sm:px-4 md:px-6 lg:px-11 flex flex-col justify-center items-center gap-2 relative z-5 my-8 sm:my-12 md:my-16 lg:my-16 mb-0 lg:pb-0">
@@ -150,16 +159,24 @@ export function LandingHero() {
                   <div
                     className={`absolute inset-0 transition-all duration-500 ease-in-out ${activeCard === 1 ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-95 blur-sm"}`}
                   >
-                    <img src="/analytics-dashboard-with-charts-graphs-and-data-vi.jpg" alt="Analytics Dashboard" className="w-full h-full object-cover" />
+                    <Image
+                      src="/analytics-dashboard-with-charts-graphs-and-data-vi.jpg"
+                      alt="Analytics Dashboard"
+                      fill
+                      className="object-cover"
+                      sizes="(min-width: 768px) 720px, 100vw"
+                    />
                   </div>
 
                   <div
                     className={`absolute inset-0 transition-all duration-500 ease-in-out ${activeCard === 2 ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-95 blur-sm"}`}
                   >
-                    <img
+                    <Image
                       src="/data-visualization-dashboard-with-interactive-char.jpg"
                       alt="Data Visualization Dashboard"
-                      className="w-full h-full object-contain"
+                      fill
+                      className="object-contain"
+                      sizes="(min-width: 768px) 720px, 100vw"
                     />
                   </div>
                 </div>

@@ -1,8 +1,15 @@
 "use client"
 
 import { useState, useEffect, useMemo } from "react"
+import Image from "next/image"
 import { useLanguage } from "@/context/language-context"
 import { featureCards } from "@/lib/feature-constants"
+
+const previewImages = [
+  { src: "/capture-branch.png", alt: "분기 처리" },
+  { src: "/capture-tree.png", alt: "트리 정리" },
+  { src: "/capture-context.png", alt: "문맥 선택" },
+]
 
 export default function DocumentationSection() {
   const { language } = useLanguage()
@@ -77,27 +84,17 @@ export default function DocumentationSection() {
           <div className="w-full md:w-auto rounded-lg flex flex-col justify-center items-center gap-2 order-1 md:order-2 md:px-0 px-[00]">
             <div className="w-full md:w-[580px] h-[250px] md:h-[420px] bg-white shadow-[0px_0px_0px_0.9056603908538818px_rgba(0,0,0,0.08)] overflow-hidden rounded-lg flex flex-col justify-start items-start">
               <div className="relative w-full h-full">
-                {/* 분기 처리 (earliest) */}
-                <img
-                  src="/capture-branch.png"
-                  alt="분기 처리"
-                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${activeCard === 0 ? 'opacity-100' : 'opacity-0'}`}
-                  loading="lazy"
-                />
-                {/* 트리 정리 (middle) */}
-                <img
-                  src="/capture-tree.png"
-                  alt="트리 정리"
-                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${activeCard === 1 ? 'opacity-100' : 'opacity-0'}`}
-                  loading="lazy"
-                />
-                {/* 문맥 선택 (latest) */}
-                <img
-                  src="/capture-context.png"
-                  alt="문맥 선택"
-                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${activeCard === 2 ? 'opacity-100' : 'opacity-0'}`}
-                  loading="lazy"
-                />
+                {previewImages.map((image, index) => (
+                  <Image
+                    key={image.src}
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    className={`absolute inset-0 object-cover transition-opacity duration-300 ${activeCard === index ? "opacity-100" : "opacity-0"}`}
+                    sizes="(min-width: 768px) 580px, 100vw"
+                    priority={index === 0}
+                  />
+                ))}
               </div>
             </div>
           </div>

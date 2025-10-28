@@ -1,4 +1,5 @@
 import type React from "react"
+import Image from "next/image"
 
 interface SmartSimpleBrilliantProps {
   /** Fixed width from Figma: 482px */
@@ -40,11 +41,11 @@ const SmartSimpleBrilliant: React.FC<SmartSimpleBrilliantProps> = ({
           "--ssb-shadow": "rgba(0,0,0,0.28)",
         } as React.CSSProperties)
 
-  // Figma-exported SVG assets used for small icons
-  const img = "http://localhost:3845/assets/1b1e60b441119fb176db990a3c7fe2670a764855.svg"
-  const img1 = "http://localhost:3845/assets/a502f04ccfc3811f304b58a3a982a5b6fa070e91.svg"
-  const img2 = "http://localhost:3845/assets/9c07375bf3b9f1f1d8a0a24447829eb6f54fa928.svg"
-  const img3 = "http://localhost:3845/assets/19500d66798ef5ea9dc9d5f971cd0e9c29674bd3.svg"
+  // Figma-exported SVG assets used for small icons (local placeholders used in production)
+  const img: string | undefined = undefined
+  const img1: string | undefined = undefined
+  const img2: string | undefined = undefined
+  const img3: string | undefined = undefined
 
   return (
     <div
@@ -110,10 +111,12 @@ const SmartSimpleBrilliant: React.FC<SmartSimpleBrilliantProps> = ({
                     </span>
                     <div style={{ background: "#92400E", padding: "1.5px", borderRadius: "100px" }}>
                       <div style={{ width: "8px", height: "8px", overflow: "hidden", position: "relative" }}>
-                        <img
-                          src={img || "/placeholder.svg"}
+                        <Image
+                          src={(img as string | undefined) || "/placeholder.svg"}
                           alt="video"
-                          style={{ position: "absolute", inset: "20% 10% 20% 10%" }}
+                          fill
+                          style={{ inset: "20% 10% 20% 10%" }}
+                          sizes="8px"
                         />
                       </div>
                     </div>
@@ -151,10 +154,12 @@ const SmartSimpleBrilliant: React.FC<SmartSimpleBrilliantProps> = ({
                     </span>
                     <div style={{ background: "#0C4A6E", padding: "1.5px", borderRadius: "100px" }}>
                       <div style={{ width: "8px", height: "8px", overflow: "hidden", position: "relative" }}>
-                        <img
-                          src={img1 || "/placeholder.svg"}
+                        <Image
+                          src={(img1 as string | undefined) || "/placeholder.svg"}
                           alt="video"
-                          style={{ position: "absolute", inset: "20% 10% 20% 10%" }}
+                          fill
+                          style={{ inset: "20% 10% 20% 10%" }}
+                          sizes="8px"
                         />
                       </div>
                     </div>
@@ -239,10 +244,12 @@ const SmartSimpleBrilliant: React.FC<SmartSimpleBrilliantProps> = ({
                     </span>
                     <div style={{ background: "#581C87", padding: "1.5px", borderRadius: "100px" }}>
                       <div style={{ width: "8px", height: "8px", overflow: "hidden", position: "relative" }}>
-                        <img
-                          src={img2 || "/placeholder.svg"}
+                        <Image
+                          src={(img2 as string | undefined) || "/placeholder.svg"}
                           alt="video"
-                          style={{ position: "absolute", inset: "20% 10% 20% 10%" }}
+                          fill
+                          style={{ inset: "20% 10% 20% 10%" }}
+                          sizes="8px"
                         />
                       </div>
                     </div>
@@ -280,10 +287,12 @@ const SmartSimpleBrilliant: React.FC<SmartSimpleBrilliantProps> = ({
                     </span>
                     <div style={{ background: "#BE123C", padding: "1.5px", borderRadius: "100px" }}>
                       <div style={{ width: "8px", height: "8px", overflow: "hidden", position: "relative" }}>
-                        <img
-                          src={img3 || "/placeholder.svg"}
+                        <Image
+                          src={(img3 as string | undefined) || "/placeholder.svg"}
                           alt="video"
-                          style={{ position: "absolute", inset: "20% 10% 20% 10%" }}
+                          fill
+                          style={{ inset: "20% 10% 20% 10%" }}
+                          sizes="8px"
                         />
                       </div>
                     </div>
