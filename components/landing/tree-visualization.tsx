@@ -256,8 +256,8 @@ export function TreeVisualization() {
         .size([innerHeight, innerWidth])
         .separation((a, b) => (a.parent === b.parent ? 1 : 2) / Math.max(a.depth, 1))
 
-      const root = d3.hierarchy<TreeNode>(treeData)
-      tree(root)
+      const hierarchyRoot = d3.hierarchy<TreeNode>(treeData)
+      const root = tree(hierarchyRoot)
 
       const nodesData = root
         .descendants()

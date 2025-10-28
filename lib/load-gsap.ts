@@ -1,6 +1,7 @@
 export type TimelineLike = {
   kill(): void
   totalProgress(value: number): void
+  duration(): number
   to(...args: unknown[]): TimelineLike
 }
 
@@ -8,6 +9,11 @@ export type GsapModule = {
   registerPlugin(...plugins: unknown[]): void
   timeline(options?: unknown): TimelineLike
   set(target: unknown, vars: Record<string, unknown>): void
+  fromTo(
+    targets: unknown,
+    fromVars: Record<string, unknown>,
+    toVars: Record<string, unknown>,
+  ): unknown
 }
 
 export type ScrollTriggerInstance = {
