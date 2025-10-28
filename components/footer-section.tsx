@@ -59,9 +59,6 @@ export default function FooterSection() {
           <div className="self-stretch flex justify-start items-center gap-3">
             <Logo width={120} height={120} className="text-[#49423D]" />
           </div>
-          <p className="text-[#1D1C1A] text-base font-medium leading-6">
-            {tagline}
-          </p>
         </div>
 
         {/* Navigation Links */}
